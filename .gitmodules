@@ -1,0 +1,3 @@
+[submodule "snowflake-cpp"]
+	path = snowflake-cpp
+	url = git@github.com:shlee322/snowflake-cpp.git
