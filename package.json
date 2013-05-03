@@ -1,0 +1,16 @@
+{
+    "name": "snowflake-node",
+    "version": "0.1.0",
+    "main": "./build/Release/SnowflakeNode",
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:shlee322/snowflake-node.git"
+    },
+    "author": "Lee Sanghyuck (http://profile.elab.kr)",
+    "description": "A node module to get your node module started",
+    "keywords": [
+        "snowflake",
+        "uuid",
+        "generator"
+    ]
+}
