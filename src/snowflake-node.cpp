@@ -18,6 +18,7 @@ void SnowflakeNode::Init(Handle<Object> target) {
     NODE_SET_PROTOTYPE_METHOD(constructor, "setEpoch", SetEpoch);
     NODE_SET_PROTOTYPE_METHOD(constructor, "setMachine", SetMachine);
     NODE_SET_PROTOTYPE_METHOD(constructor, "generate", Generate);
+	NODE_SET_PROTOTYPE_METHOD(constructor, "sharding", Sharding);
 
     target->Set(name, constructor->GetFunction());
 }
@@ -79,6 +80,20 @@ Handle<Value> SnowflakeNode::Generate(const Arguments& args) {
     sprintf(stringValue, "%llx", value);
 
     return scope.Close(String::New(stringValue));
+}
+
+Handle<Value> SnowflakeNode::Sharding(const Arguments& args) {
+    HandleScope scope;
+
+	SnowflakeNode* obj = ObjectWrap::Unwrap<SnowflakeNode>(args.This());
+
+    char stringValue[17];
+    int64_t value;
+
+    args[0]->ToString()->WriteAscii(stringValue);
+    sscanf(stringValue, "%llx", &value);
+
+    return scope.Close(Integer::New(value % args[1]->ToInteger()->Value()));
 }
 
 void RegisterModule(v8::Handle<v8::Object> target) {
